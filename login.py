@@ -88,4 +88,4 @@ for i in range(acccounts):
     print('Login success')
     driver.get_screenshot_as_file('screenshot.png')
     driver.quit()
-    create_html_with_embedded_image("screenshot.png", "index.html")
+    # create_html_with_embedded_image("screenshot.png", "index.html")
