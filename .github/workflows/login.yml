@@ -16,3 +16,16 @@ jobs:
 
       - name: Majsoul login
         run: python login.py ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
+      
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          serveraddress: smtp.gmail.com
+          serverport: 465
+          username: ${{ secrets.MAILUSERNAME }}
+          password: ${{ secrets.MAILPASSWORD }}
+          subject: Majsoul login
+          body: file://screenshot.png
+          to: ${{ secrets.EMAIL }}
+          from: GitHub Actions
+          content_type: text/html

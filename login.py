@@ -47,4 +47,5 @@ for i in range(acccounts):
     print('Entering game...')
     sleep(20) #loading...
     print('Login success')
+    driver.get_screenshot_as_file('screenshot.png')
     driver.quit()
