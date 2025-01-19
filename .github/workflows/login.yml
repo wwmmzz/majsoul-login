@@ -25,6 +25,6 @@ jobs:
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: Majsoul login
-          html_body: file://screenshot.png
+          html_body: file://index.html
           to: ${{ secrets.EMAIL }}
           from: GitHub Actions
