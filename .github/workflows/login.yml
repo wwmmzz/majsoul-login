@@ -10,12 +10,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Selenium
-        run: pip install selenium==4.17.2
-
-      - name: Majsoul login
-        run: python login.py ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
       
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
