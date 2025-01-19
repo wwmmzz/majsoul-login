@@ -34,10 +34,8 @@ def create_html_with_embedded_image(image_path, output_path="index.html"):
     <!DOCTYPE html>
     <html>
     <head>
-        <title>包含嵌入图片的 HTML</title>
     </head>
     <body>
-        <h1>这是一张嵌入的图片：</h1>
         <img src="data:{mime_type};base64,{encoded_string}" alt="嵌入的图片">
     </body>
     </html>
