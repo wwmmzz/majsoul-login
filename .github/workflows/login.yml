@@ -14,12 +14,11 @@ jobs:
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@v4
         with:
-          serveraddress: smtp.gmail.com
-          serverport: 465
+          server_address: smtp.gmail.com
+          server_port: 465
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: Majsoul login
           body: test
           to: ${{ secrets.EMAIL }}
           from: GitHub Actions
-          content_type: text/html
