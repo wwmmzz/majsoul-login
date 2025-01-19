@@ -18,7 +18,7 @@ jobs:
         run: python login.py ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
       
       - name: 'Send mail'
-        uses: dawidd6/action-send-mail@v4
+        uses: wwmmzz/action-send-mail@master
         with:
           server_address: smtp.gmail.com
           server_port: 465
