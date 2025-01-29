@@ -110,7 +110,7 @@ def login():
 
 retry = 0
 threshold = 0.8 
-image1_path = 'screenshot.jpg'
+image1_path = 'screenshot.png'
 image2_path = 'screenshot_recompress1.jpg'
 # ssim_score = compare_images_hist(image1_path, image2_path)
 # print(f'retry {retry} times...')
