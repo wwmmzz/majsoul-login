@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Selenium
-        run: pip install opencv-python==4.11.0 selenium==4.17.2
+        run: pip install opencv-python==4.11.0.86 selenium==4.17.2
 
       - name: Majsoul login
         run: python login.py ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
