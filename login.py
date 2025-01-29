@@ -1,5 +1,6 @@
 import sys
 from time import sleep
+import cv2
 
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -51,14 +52,31 @@ for i in range(acccounts):
     email = sys.argv[1+i]
     passwd = sys.argv[1+i+acccounts]
     print('----------------------------')
+def compare_images_hist(image1_path, image2_path):
+    image1 = cv2.imread(image1_path)
+    image2 = cv2.imread(image2_path)
 
+    # 计算直方图
+    hist1 = cv2.calcHist([image1], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
+    hist2 = cv2.calcHist([image2], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
+
+    # 归一化直方图
+    cv2.normalize(hist1, hist1, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX)
+    cv2.normalize(hist2, hist2, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX)
+
+    # 计算直方图相似度
+    similarity = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CORREL)
+    print(f"Histogram Similarity: {similarity}")
+    return similarity
+
+def login():
     #1.open browser
     options = webdriver.ChromeOptions()
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.set_window_size(1000, 720)
     driver.get("https://game.maj-soul.net/1/")
-    print(f'Account {i+1} loading game...')
+    # print(f'Account {i+1} loading game...')
     sleep(20)
 
     #2.input email
@@ -89,3 +107,17 @@ for i in range(acccounts):
     driver.get_screenshot_as_file('screenshot.png')
     driver.quit()
     # create_html_with_embedded_image("screenshot.png", "index.html")
+
+retry = 0
+threshold = 0.8 
+image1_path = 'screenshot.jpg'
+image2_path = 'screenshot_recompress1.jpg'
+# ssim_score = compare_images_hist(image1_path, image2_path)
+# print(f'retry {retry} times...')
+ssim_score = 0.8
+
+while ssim_score>=threshold and retry<3:
+    login()
+    ssim_score = compare_images_hist(image1_path, image2_path)
+    retry +=1
+    print(f'retry {retry} times...')
